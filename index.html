@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aggiornamento Valore Excel(5)</title>
+    <title>Aggiornamento Valore Excel</title>
 </head>
 <body>
-    <h1>Ultimo aggiornamento cazzo:</h1>
-    <p id="valore">Caricamento...</p>
+    <h1>Ultimo aggiornamento:</h1>
+    <p id="valore">Caricamento cazzo...</p>
     <script>
-        setInterval(() => {
+        function aggiornaValore() {
             fetch('/.netlify/functions/get-valore')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('valore').textContent = data;
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    document.getElementById('valore').textContent = 'Errore nel caricamento del valore';
                 });
-        }, 5000);
+        }
+
+        // Aggiorna immediatamente e poi ogni 5 secondi
+        aggiornaValore();
+        setInterval(aggiornaValore, 5000);
     </script>
 </body>
 </html>
