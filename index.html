@@ -13,11 +13,7 @@
             fetch('/.netlify/functions/get-valore')
                 .then(response => response.text())
                 .then(data => {
-                    const valoreElement = document.getElementById('valore');
-                    if (data !== valoreElement.textContent) {
-                        valoreElement.textContent = data;
-                        console.log('Valore aggiornato:', data);
-                    }
+                    document.getElementById('valore').textContent = data;
                 })
                 .catch(error => {
                     console.error('Errore:', error);
