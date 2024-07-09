@@ -12,7 +12,7 @@ exports.handler = async function(event, context) {
         await fs.writeFile('/tmp/valore.txt', contenuto, 'utf8');
         return {
             statusCode: 200,
-            body: "Valore aggiornato con successo"
+            body: "Valore aggiornato con successo cazzo"
         };
     } catch (error) {
         return {
