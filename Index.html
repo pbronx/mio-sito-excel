@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Display</title>
+</head>
+<body>
+  <h1>Dato aggiornato:</h1>
+  <div id="data-display">Caricamento...</div>
+
+  <script>
+    async function fetchData() {
+      const response = await fetch('/.netlify/functions/get-data');
+      const result = await response.json();
+      document.getElementById('data-display').innerText = result.data;
+    }
+
+    fetchData();
+    setInterval(fetchData, 3600000); // Aggiorna ogni ora
+  </script>
+</body>
+</html>
 
