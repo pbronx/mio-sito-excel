@@ -11,7 +11,7 @@
 
   <script>
     async function fetchData() {
-      const response = await fetch('/.netlify/functions/get-data');
+      const response = await fetch('/.netlify/var2/get-data');
       const result = await response.json();
       document.getElementById('data-display').innerText = result.data;
     }
