@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiornamento Valore Excel</title>
+</head>
+<body>
+    <h1>Ultimo aggiornamento:</h1>
+    <p id="valore">Caricamento...</p>
+    <script>
+        setInterval(() => {
+            fetch('/.netlify/functions/get-valore')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('valore').textContent = data;
+                });
+        }, 5000);
+    </script>
+</body>
+</html>
