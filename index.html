@@ -6,14 +6,18 @@
     <title>Aggiornamento Valore Excel</title>
 </head>
 <body>
-    <h1>Ultimo aggiornamento perbacco:</h1>
-    <p id="valore">Caricamento cazzo...</p>
+    <h1>Ultimo aggiornamento:</h1>
+    <p id="valore">Caricamento...</p>
     <script>
         function aggiornaValore() {
             fetch('/.netlify/functions/get-valore')
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('valore').textContent = data;
+                    const valoreElement = document.getElementById('valore');
+                    if (data !== valoreElement.textContent) {
+                        valoreElement.textContent = data;
+                        console.log('Valore aggiornato:', data);
+                    }
                 })
                 .catch(error => {
                     console.error('Errore:', error);
