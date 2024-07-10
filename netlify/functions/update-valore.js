@@ -11,6 +11,6 @@ exports.handler = async function(event, context) {
     
     return {
         statusCode: 200,
-        body: "Valore aggiornato con successo (versione 1)"
+        body: "Valore aggiornato con successo (Ma se è tutto spento come fa?)"
     };
 };
