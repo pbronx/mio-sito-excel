@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Display BIS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiornamento Valore Excel</title>
 </head>
 <body>
-  <h1>Dato aggiornato:</h1>
-  <div id="data-display">Caricamento BIS...</div>
+    <h1>Ultimo aggiornamento:</h1>
+    <p id="valore">Caricamento...</p>
+    <script>
+        function aggiornaValore() {
+            fetch('/.netlify/functions/get-valore')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('valore').textContent = data;
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    document.getElementById('valore').textContent = 'Errore nel caricamento del valore';
+                });
+        }
 
-  <script>
-    async function fetchData() {
-      const response = await fetch('/.netlify/var2/get-data');
-      const result = await response.json();
-      document.getElementById('data-display').innerText = result.data;
-    }
-
-    fetchData();
-    setInterval(fetchData, 3600000); // Aggiorna ogni ora
-  </script>
+        // Aggiorna immediatamente e poi ogni 5 secondi
+        aggiornaValore();
+        setInterval(aggiornaValore, 5000);
+    </script>
 </body>
 </html>
 
